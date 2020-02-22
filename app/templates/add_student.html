@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-fluid">
+    <h1>Hi!</h1>
+    <h2>Add a student here</h2>
+    <form action="{{url_for('add_student')}}" method="POST">
+        <table>
+            <tr>
+                <td>{{form.first_name.label}} </td>
+                <td>{{form.first_name(size=30)}}</td>
+            </tr>
+            <tr>
+                <td>{{form.last_name.label}} </td>
+                <td>{{form.last_name(size=30)}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{{form.submit()}}</td>
+            </tr>
+        </table>
+
+    </form>
+
+</div>
+{% endblock %}

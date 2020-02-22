@@ -1,6 +1,9 @@
 from app import app
-from flask import render_template
-    
+from flask import render_template, request, redirect
+from forms import NewStudentForm
+
+app.config['SECRET_KEY'] = 'randomtext'
+
 @app.route('/')
 def index():
     greeting = "We come in peace."
@@ -10,6 +13,14 @@ def index():
 def students():
     greeting = "Welcome to the student spage."
     return render_template('students.html', title='Home', greeting=greeting)
+
+@app.route('/add_student', methods=['GET', 'POST'])
+def add_student():
+    form = NewStudentForm()
+    if form.is_submitted():
+        result = request.form
+        return render_template('success.html', result=result)
+    return render_template('add_student.html', form=form)
 
 @app.route('/statistics')
 def statistics():
